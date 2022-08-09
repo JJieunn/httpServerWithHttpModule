@@ -19,6 +19,21 @@ const users = [
   },
 ];
 
+const posts = [
+  {
+    id: 1,
+    title: "백엔드 API 공부 시작",
+    content: "Node.js에 Express 프레임워크 사용",
+    userId: 1,
+  },
+  {
+    id: 2,
+    title: "백엔드 재밌어 보이는데..",
+    content: "어렵다 어려워..",
+    userId: 1,
+  },
+];
+
 // users
 const createUser = (req, res) => {
   const user = req.body.userData;
@@ -30,8 +45,21 @@ const createUser = (req, res) => {
     password: user.password,
   });
 
-  console.log("after : ", users);
   res.json({ message: "userCreated" });
 };
 
-module.exports = { createUser };
+// posts
+const createPost = (req, res) => {
+  const post = req.body.postData;
+
+  posts.push({
+    id: post.id,
+    title: post.title,
+    content: post.content,
+    userId: post.userId,
+  });
+
+  res.json({ message: "postCreated" });
+};
+
+module.exports = { createUser, createPost };
